@@ -139,13 +139,14 @@ public class DishController {
      */
     @GetMapping("/list")
     @ApiOperation("根据分类id查询菜品")
-    public Result<List<Dish>> list(Long categoryId) {
-        List<Dish> list = dishService.list(categoryId);
+    public Result<List<DishVO>> list(Long categoryId) {
+        List<DishVO> list = dishService.listWithFlavor(categoryId);
         return Result.success(list);
     }
 
     /**
      * 清理缓存数据
+     * pattern是通配符，*表示所有
      * @param pattern
      */
     private void cleanCache(String pattern){
